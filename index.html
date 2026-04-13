@@ -5,343 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurador - Botão WhatsApp Flutuante</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f4f8ff;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #5f6b7a;
+            --blue: #155EEF;
+            --green: #25D366;
+            --line: #e5eaf2;
+            --shadow: 0 28px 70px rgba(21, 94, 239, 0.12);
         }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
-            padding: 20px;
+            background:
+                radial-gradient(circle at top left, rgba(21, 94, 239, 0.18), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(37, 211, 102, 0.12), transparent 26%),
+                var(--bg);
+            color: var(--text);
+            padding: 24px;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
-        }
-
+        .page { max-width: 1400px; margin: 0 auto; }
+        .back-link { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); text-decoration: none; font-weight: 600; margin-bottom: 28px; }
+        .layout { display: grid; grid-template-columns: minmax(280px, 1.05fr) minmax(360px, 1.2fr); gap: 36px; align-items: start; }
+        .hero { padding: 24px 8px 24px 8px; }
+        .eyebrow { font-size: 0.95rem; font-weight: 700; color: var(--blue); margin-bottom: 18px; }
+        .hero h1 { font-size: clamp(3rem, 5vw, 5.25rem); line-height: 0.96; letter-spacing: -0.06em; color: var(--blue); margin-bottom: 24px; max-width: 8ch; }
+        .hero p { font-size: 1.15rem; line-height: 1.55; color: #495867; max-width: 38rem; }
+        .features { display: grid; gap: 14px; margin-top: 22px; }
+        .feature { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0 0; color: #4f5b68; }
+        .feature::before { content: '✓'; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: rgba(37, 211, 102, 0.14); color: var(--green); font-weight: 800; flex: 0 0 24px; }
+        .card { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+        .card-head { background: linear-gradient(135deg, #5d7cec 0%, #8e59c8 100%); color: white; padding: 28px 30px; text-align: center; }
+        .card-head h2 { font-size: 1.8rem; margin-bottom: 10px; letter-spacing: -0.03em; }
+        .card-head p { opacity: 0.95; font-size: 1rem; }
+        .card-body { padding: 32px 32px 28px; }
+        .hint { background: #eef5ff; border-left: 4px solid var(--blue); padding: 16px 18px; border-radius: 10px; margin-bottom: 24px; color: #334155; line-height: 1.45; }
+        .hint strong { color: var(--blue); }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 700; font-size: 0.98rem; color: #243447; }
         .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
+        .form-group textarea,
+        .form-group select { width: 100%; padding: 15px 16px; border: 1.5px solid #d7dde8; border-radius: 10px; background: #fff; font: inherit; color: var(--text); transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
         .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 60px;
-        }
-
-        .form-group small {
-            display: block;
-            margin-top: 8px;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .help-text {
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .help-text strong {
-            color: #667eea;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        button {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-generate {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-generate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-copy {
-            background: #25D366;
-            color: white;
-            display: none;
-        }
-
-        .btn-copy:hover {
-            background: #20a852;
-        }
-
-        .btn-copy.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .output-section {
-            display: none;
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 2px solid #eee;
-        }
-
-        .output-section.show {
-            display: block;
-        }
-
-        .output-section h2 {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 18px;
-        }
-
-        .code-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.5;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .copy-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #25D366;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .copy-indicator.show {
-            opacity: 1;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .tab-button {
-            padding: 10px 20px;
-            background: #f0f0f0;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #666;
-            transition: all 0.3s;
-        }
-
-        .tab-button.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .preview {
-            border: 2px solid #eee;
-            border-radius: 6px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            background: #f9f9f9;
-        }
-
-        .preview p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .content {
-                padding: 20px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-        }
+        .form-group textarea:focus,
+        .form-group select:focus { outline: none; border-color: #7aa2ff; box-shadow: 0 0 0 4px rgba(21, 94, 239, 0.12); }
+        .form-group textarea { min-height: 102px; resize: vertical; }
+        .form-group small { display: block; margin-top: 8px; color: var(--muted); line-height: 1.45; }
+        .actions { display: flex; gap: 14px; margin-top: 28px; }
+        .btn { appearance: none; border: 0; border-radius: 999px; padding: 14px 22px; font: inherit; font-weight: 700; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease; }
+        .btn-primary { flex: 1; color: #fff; background: linear-gradient(90deg, #155EEF 0%, #8b5cf6 100%); box-shadow: 0 14px 30px rgba(21, 94, 239, .24); }
+        .output { display: none; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); }
+        .output.show { display: block; }
+        .output h3 { font-size: 1.1rem; margin-bottom: 16px; color: #243447; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 16px; }
+        .tab-button { flex: 1; border: 1px solid #d7dde8; background: #f4f7fb; color: #5a6472; border-radius: 12px; padding: 12px 16px; font-weight: 700; cursor: pointer; }
+        .tab-button.active { background: #155EEF; color: white; border-color: #155EEF; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .code-block { position: relative; background: #111827; color: #e5e7eb; border-radius: 14px; padding: 18px; overflow-x: auto; font: 13px/1.55 'Courier New', monospace; margin-bottom: 14px; }
+        .copy-indicator { position: absolute; top: 12px; right: 12px; background: var(--green); color: white; border-radius: 999px; padding: 4px 8px; font-size: 12px; opacity: 0; transition: opacity .2s ease; }
+        .copy-indicator.show { opacity: 1; }
+        .btn-copy { width: 100%; background: #25D366; color: white; }
+        .preview { margin-top: 22px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #f9fbff; }
+        .preview-header { padding: 14px 16px; border-bottom: 1px solid var(--line); font-weight: 700; color: #243447; background: #fff; }
+        iframe { width: 100%; height: 320px; border: 0; background: white; }
+        @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } .hero h1 { max-width: none; } }
+        @media (max-width: 640px) { body { padding: 16px; } .card-head, .card-body { padding-left: 18px; padding-right: 18px; } .hero { padding: 8px 2px 18px; } .hero h1 { font-size: clamp(2.5rem, 14vw, 4rem); } .actions, .tabs { flex-direction: column; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📱 Configurador - Botão WhatsApp</h1>
-            <p>Configure seu número e mensagem para gerar o código</p>
-        </div>
+    <div class="page">
+        <a class="back-link" href="#configurador">← Ver mais ferramentas gratuitas</a>
 
-        <div class="content">
-            <div class="help-text">
-                <strong>Como funciona:</strong> Configure seu número de WhatsApp e mensagem abaixo, depois copie o código e cole no seu site!
-            </div>
+        <main class="layout">
+            <section class="hero">
+                <div class="eyebrow">Gerador de link para WhatsApp</div>
+                <h1>Gerador de link para WhatsApp</h1>
+                <p>Facilite o contato com seus clientes. Informe seu número, escreva uma mensagem opcional ou escolha um modelo pronto para gerar o link do WhatsApp em poucos segundos.</p>
 
-            <form id="configForm">
-                <div class="form-group">
-                    <label for="phoneNumber">📞 Número do WhatsApp *</label>
-                    <input 
-                        type="text" 
-                        id="phoneNumber" 
-                        name="phoneNumber" 
-                        placeholder="Ex: 5511987654321"
-                        required
-                    >
-                    <small>⚠️ Use o formato internacional sem caracteres especiais. Exemplos:<br>
-                    🇧🇷 Brasil: 55 + DDD + Número (ex: 5511987654321)<br>
-                    🇵🇹 Portugal: 351 + Número (ex: 351912345678)
-                    </small>
+                <div class="features">
+                    <div class="feature">Link pronto para copiar e usar no seu site</div>
+                    <div class="feature">Mensagem automática opcional para pré-preencher o chat</div>
+                    <div class="feature">Layout responsivo e direto, ideal para desktop e celular</div>
+                </div>
+            </section>
+
+            <section class="card" id="configurador">
+                <div class="card-head">
+                    <h2>Configurador - Botão WhatsApp</h2>
+                    <p>Configure seu número e mensagem para gerar o código</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="message">💬 Mensagem Padrão (Opcional)</label>
-                    <textarea 
-                        id="message" 
-                        name="message" 
-                        placeholder="Ex: Olá! Gostaria de mais informações sobre..."
-                    ></textarea>
-                    <small>Esta mensagem será pré-preenchida na conversa do WhatsApp</small>
-                </div>
+                <div class="card-body">
+                    <div class="hint"><strong>Como funciona:</strong> preencha seu número e mensagem abaixo, clique em gerar e copie o código pronto para incorporar no seu site.</div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-generate" onclick="generateCode()">
-                        ✨ Gerar Código
-                    </button>
-                </div>
-            </form>
+                    <form id="configForm">
+                        <div class="form-group">
+                            <label for="phoneNumber">Insira um número de telefone celular</label>
+                            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="(99) 9999-9999" required>
+                            <small>Use o formato internacional sem caracteres especiais. Ex.: 5511987654321</small>
+                        </div>
 
-            <!-- Seção de Output -->
-            <div class="output-section" id="outputSection">
-                <h2>📋 Código para Incorporar em Seu Site</h2>
+                        <div class="form-group">
+                            <label for="message">Insira uma mensagem <span style="font-weight: 500; color: #7a8697;">(opcional)</span></label>
+                            <textarea id="message" name="message" placeholder="O texto que você deseja compartilhar"></textarea>
+                            <small>Esta mensagem será aberta automaticamente dentro do WhatsApp.</small>
+                        </div>
 
-                <div class="tabs">
-                    <button class="tab-button active" onclick="switchTab('simple')">Simples</button>
-                    <button class="tab-button" onclick="switchTab('advanced')">Avançado</button>
-                </div>
+                        <div class="form-group">
+                            <label for="template">Ou escolha um modelo pronto</label>
+                            <select id="template" name="template">
+                                <option value="">Selecione um modelo</option>
+                                <option value="Olá! Quero fazer um pedido.">Quero fazer um pedido</option>
+                                <option value="Olá! Pode me enviar o catálogo de produtos?">Quero o catálogo</option>
+                                <option value="Oi! Vim do Instagram e quero mais informações sobre a promoção.">Vim do Instagram</option>
+                                <option value="Olá! Preciso de ajuda com um pedido.">Preciso de ajuda</option>
+                            </select>
+                        </div>
 
-                <!-- Tab Simples -->
-                <div id="simple" class="tab-content active">
-                    <p style="color: #666; margin-bottom: 15px;">Copie este código e cole <strong>antes de &lt;/body&gt;</strong> no seu site:</p>
-                    <div class="code-block">
-                        <span class="copy-indicator" id="simpleCopyIndicator">Copiado!</span>
-                        <code id="simpleCode"></code>
-                    </div>
-                    <button class="btn-copy show" onclick="copyToClipboard('simpleCode', 'simpleCopyIndicator')">
-                        📋 Copiar Código
-                    </button>
-                </div>
+                        <div class="actions">
+                            <button type="button" class="btn btn-primary" onclick="generateCode()">Gerar link do Whatsapp</button>
+                        </div>
+                    </form>
 
-                <!-- Tab Avançado -->
-                <div id="advanced" class="tab-content">
-                    <p style="color: #666; margin-bottom: 15px;">Use este método se já tiver Font Awesome instalado:</p>
-                    <div class="code-block">
-                        <span class="copy-indicator" id="advancedCopyIndicator">Copiado!</span>
-                        <code id="advancedCode"></code>
-                    </div>
-                    <button class="btn-copy show" onclick="copyToClipboard('advancedCode', 'advancedCopyIndicator')">
-                        📋 Copiar Código
-                    </button>
-                </div>
+                    <section class="output" id="outputSection">
+                        <h3>Código para incorporar</h3>
 
-                <!-- Preview -->
-                <div class="preview">
-                    <p style="font-weight: 600;">🔍 Pré-visualização:</p>
-                    <iframe 
-                        id="preview" 
-                        style="width: 100%; height: 300px; border: none; border-radius: 6px; background: white;"
-                    ></iframe>
+                        <div class="tabs">
+                            <button class="tab-button active" type="button" onclick="switchTab('simple', this)">Simples</button>
+                            <button class="tab-button" type="button" onclick="switchTab('advanced', this)">Avançado</button>
+                        </div>
+
+                        <div id="simple" class="tab-content active">
+                            <div class="code-block">
+                                <span class="copy-indicator" id="simpleCopyIndicator">Copiado!</span>
+                                <code id="simpleCode"></code>
+                            </div>
+                            <button class="btn btn-copy" type="button" onclick="copyToClipboard('simpleCode', 'simpleCopyIndicator')">Copiar código</button>
+                        </div>
+
+                        <div id="advanced" class="tab-content">
+                            <div class="code-block">
+                                <span class="copy-indicator" id="advancedCopyIndicator">Copiado!</span>
+                                <code id="advancedCode"></code>
+                            </div>
+                            <button class="btn btn-copy" type="button" onclick="copyToClipboard('advancedCode', 'advancedCopyIndicator')">Copiar código</button>
+                        </div>
+
+                        <div class="preview">
+                            <div class="preview-header">Pré-visualização</div>
+                            <iframe id="preview"></iframe>
+                        </div>
+                    </section>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
     <script>
@@ -350,50 +170,25 @@
             const message = document.getElementById('message').value.trim();
 
             if (!phoneNumber) {
-                alert('Por favor, insira seu número de WhatsApp');
+                alert('Por favor, insira seu número de WhatsApp.');
                 return;
             }
 
-            // Código Simples (com estilos inlinados)
-            const simpleCode = `<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            const messageLine = message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : '';
+            const simpleCode = `<!-- Botão WhatsApp -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${messageLine}</script>\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
 
-<!-- Botão WhatsApp Flutuante -->
-<script>
-  window.WHATSAPP_NUMBER = '${phoneNumber}';
-  ${message ? `window.WHATSAPP_MESSAGE = '${message}';` : ''}
-</script>
-<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
+            const advancedCode = `<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${messageLine}</script>\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
 
-            // Código Avançado (minificado)
-            const advancedCode = `<script>
-  window.WHATSAPP_NUMBER = '${phoneNumber}';
-  ${message ? `window.WHATSAPP_MESSAGE = '${message}';` : ''}
-</script>
-<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
-
-            // Atualizar código nos campos
             document.getElementById('simpleCode').textContent = simpleCode;
             document.getElementById('advancedCode').textContent = advancedCode;
-
-            // Mostrar seção de output
             document.getElementById('outputSection').classList.add('show');
 
-            // Atualizar preview
             updatePreview(phoneNumber, message);
-
-            // Scroll para output
-            setTimeout(() => {
-                document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function updatePreview(phoneNumber, message) {
-            const iframeDoc = document.getElementById('preview').contentDocument || 
-                              document.getElementById('preview').contentWindow.document;
-            
+            const iframeDoc = document.getElementById('preview').contentDocument || document.getElementById('preview').contentWindow.document;
             const previewHTML = `<!DOCTYPE html>
 <html>
 <head>
@@ -402,20 +197,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">
     <style>
-        body { margin: 0; padding: 20px; background: #f0f7ff; font-family: Arial, sans-serif; }
-        .content { background: white; padding: 30px; border-radius: 8px; text-align: center; }
-        h1 { color: #333; margin: 0 0 10px 0; }
-        p { color: #666; margin: 0; }
+        body { margin: 0; padding: 20px; background: #f4f8ff; font-family: Inter, Arial, sans-serif; }
+        .content { background: white; padding: 24px; border-radius: 16px; border: 1px solid #e5eaf2; text-align: center; }
+        h1 { color: #155EEF; margin: 0 0 12px 0; font-size: 22px; }
+        p { color: #526173; margin: 0; line-height: 1.5; }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1>🎉 Via Seu Site</h1>
-        <p>Clique no botão verde no canto inferior direito</p>
+        <h1>Seu site</h1>
+        <p>O botão flutuante aparece no canto inferior direito.</p>
     </div>
     <script>
-        window.WHATSAPP_NUMBER = '${phoneNumber}';
-        ${message ? `window.WHATSAPP_MESSAGE = '${message}';` : '// Sem mensagem padrão'}
+        window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};
+        ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};` : ''}
     </script>
     <script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>
 </body>
@@ -426,39 +221,30 @@
             iframeDoc.close();
         }
 
-        function switchTab(tabName) {
-            // Remover active de todos os tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Adicionar active ao tab selecionado
+        function switchTab(tabName, button) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(tabButton => tabButton.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+            button.classList.add('active');
         }
 
         function copyToClipboard(elementId, indicatorId) {
-            const codeElement = document.getElementById(elementId);
-            const text = codeElement.textContent;
-
+            const text = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(text).then(() => {
                 const indicator = document.getElementById(indicatorId);
                 indicator.classList.add('show');
-                setTimeout(() => {
-                    indicator.classList.remove('show');
-                }, 1500);
-            }).catch(err => {
-                alert('Erro ao copiar: ' + err);
+                setTimeout(() => indicator.classList.remove('show'), 1200);
             });
         }
 
-        // Pré-carregar com valores de exemplo
+        document.getElementById('template').addEventListener('change', function() {
+            if (this.value) {
+                document.getElementById('message').value = this.value;
+            }
+        });
+
         window.addEventListener('load', () => {
-            document.getElementById('phoneNumber').value = '553438132026';
-            document.getElementById('message').value = 'Olá! Gostaria de saber mais sobre seus serviços.';
+            document.getElementById('phoneNumber').value = '5534998105536';
         });
     </script>
 </body>
