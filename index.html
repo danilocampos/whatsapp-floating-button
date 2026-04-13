@@ -58,12 +58,6 @@
         .btn-primary { flex: 1; color: #fff; background: linear-gradient(90deg, #155EEF 0%, #8b5cf6 100%); box-shadow: 0 14px 30px rgba(21, 94, 239, .24); }
         .output { display: none; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); }
         .output.show { display: block; }
-        .output h3 { font-size: 1.1rem; margin-bottom: 16px; color: #243447; }
-        .tabs { display: flex; gap: 10px; margin-bottom: 16px; }
-        .tab-button { flex: 1; border: 1px solid #d7dde8; background: #f4f7fb; color: #5a6472; border-radius: 12px; padding: 12px 16px; font-weight: 700; cursor: pointer; }
-        .tab-button.active { background: #155EEF; color: white; border-color: #155EEF; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
         .code-block { position: relative; background: #111827; color: #e5e7eb; border-radius: 14px; padding: 18px; overflow-x: auto; font: 13px/1.55 'Courier New', monospace; margin-bottom: 14px; }
         .copy-indicator { position: absolute; top: 12px; right: 12px; background: var(--green); color: white; border-radius: 999px; padding: 4px 8px; font-size: 12px; opacity: 0; transition: opacity .2s ease; }
         .copy-indicator.show { opacity: 1; }
@@ -72,7 +66,7 @@
         .preview-header { padding: 14px 16px; border-bottom: 1px solid var(--line); font-weight: 700; color: #243447; background: #fff; }
         iframe { width: 100%; height: 320px; border: 0; background: white; }
         @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } .hero h1 { max-width: none; } }
-        @media (max-width: 640px) { body { padding: 16px; } .card-head, .card-body { padding-left: 18px; padding-right: 18px; } .hero { padding: 8px 2px 18px; } .hero h1 { font-size: clamp(2.5rem, 14vw, 4rem); } .actions, .tabs { flex-direction: column; } }
+        @media (max-width: 640px) { body { padding: 16px; } .card-head, .card-body { padding-left: 18px; padding-right: 18px; } .hero { padding: 8px 2px 18px; } .hero h1 { font-size: clamp(2.5rem, 14vw, 4rem); } .actions { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -81,7 +75,7 @@
             <section class="hero">
                 <div class="eyebrow">Gerador de link para WhatsApp</div>
                 <h1>Gerador de link para WhatsApp</h1>
-                <p>Facilite o contato com seus clientes. Informe seu número, escreva uma mensagem opcional ou escolha um modelo pronto para gerar o link do WhatsApp em poucos segundos.</p>
+                <p>Facilite o contato com seus clientes. Informe seu número e uma mensagem opcional para gerar um código pronto com o link do WhatsApp em poucos segundos.</p>
 
                 <div class="features">
                     <div class="feature">Link pronto para copiar e usar no seu site</div>
@@ -112,45 +106,21 @@
                             <small>Esta mensagem será aberta automaticamente dentro do WhatsApp.</small>
                         </div>
 
-                        <div class="form-group">
-                            <label for="template">Ou escolha um modelo pronto</label>
-                            <select id="template" name="template">
-                                <option value="">Selecione um modelo</option>
-                                <option value="Olá! Quero fazer um pedido.">Quero fazer um pedido</option>
-                                <option value="Olá! Pode me enviar o catálogo de produtos?">Quero o catálogo</option>
-                                <option value="Oi! Vim do Instagram e quero mais informações sobre a promoção.">Vim do Instagram</option>
-                                <option value="Olá! Preciso de ajuda com um pedido.">Preciso de ajuda</option>
-                            </select>
-                        </div>
-
                         <div class="actions">
-                            <button type="button" class="btn btn-primary" onclick="generateCode()">Gerar link do Whatsapp</button>
+                            <button type="button" class="btn btn-primary" onclick="generateCode()">Gerar código pronto</button>
                         </div>
                     </form>
 
                     <section class="output" id="outputSection">
-                        <h3>Código para incorporar</h3>
+                        <h3>Código pronto para incorporar</h3>
 
-                        <div class="tabs">
-                            <button class="tab-button active" type="button" onclick="switchTab('simple', this)">Simples</button>
-                            <button class="tab-button" type="button" onclick="switchTab('advanced', this)">Avançado</button>
-                        </div>
+                        <p style="color: #5f6b7a; margin-bottom: 16px;">Copie este bloco e cole antes do fechamento da tag <strong>&lt;/body&gt;</strong> no seu site.</p>
 
-                        <div id="simple" class="tab-content active">
-                            <div class="code-block">
-                                <span class="copy-indicator" id="simpleCopyIndicator">Copiado!</span>
-                                <code id="simpleCode"></code>
-                            </div>
-                            <button class="btn btn-copy" type="button" onclick="copyToClipboard('simpleCode', 'simpleCopyIndicator')">Copiar código</button>
+                        <div class="code-block">
+                            <span class="copy-indicator" id="embedCopyIndicator">Copiado!</span>
+                            <code id="embedCode"></code>
                         </div>
-
-                        <div id="advanced" class="tab-content">
-                            <div class="code-block">
-                                <span class="copy-indicator" id="advancedCopyIndicator">Copiado!</span>
-                                <code id="advancedCode"></code>
-                            </div>
-                            <button class="btn btn-copy" type="button" onclick="copyToClipboard('advancedCode', 'advancedCopyIndicator')">Copiar código</button>
-                        </div>
+                        <button class="btn btn-copy" type="button" onclick="copyToClipboard('embedCode', 'embedCopyIndicator')">Copiar código</button>
 
                         <div class="preview">
                             <div class="preview-header">Pré-visualização</div>
@@ -172,13 +142,9 @@
                 return;
             }
 
-            const messageLine = message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : '';
-            const simpleCode = `<!-- Botão WhatsApp -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${messageLine}</script>\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
+            const embedCode = `<!-- Botão WhatsApp Flutuante -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : ''}</script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>`;
 
-            const advancedCode = `<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${messageLine}</script>\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">`;
-
-            document.getElementById('simpleCode').textContent = simpleCode;
-            document.getElementById('advancedCode').textContent = advancedCode;
+            document.getElementById('embedCode').textContent = embedCode;
             document.getElementById('outputSection').classList.add('show');
 
             updatePreview(phoneNumber, message);
@@ -219,13 +185,6 @@
             iframeDoc.close();
         }
 
-        function switchTab(tabName, button) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(tabButton => tabButton.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            button.classList.add('active');
-        }
-
         function copyToClipboard(elementId, indicatorId) {
             const text = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(text).then(() => {
@@ -234,12 +193,6 @@
                 setTimeout(() => indicator.classList.remove('show'), 1200);
             });
         }
-
-        document.getElementById('template').addEventListener('change', function() {
-            if (this.value) {
-                document.getElementById('message').value = this.value;
-            }
-        });
 
         window.addEventListener('load', () => {
             document.getElementById('phoneNumber').value = '5534998105536';
