@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Botão WhatsApp Flutuante</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .info {
+            background: #f0f7ff;
+            border-left: 4px solid #25D366;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .info h3 {
+            color: #25D366;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .info ul {
+            list-style: none;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .info li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #25D366;
+            font-weight: bold;
+        }
+        
+        /* Override para ícone do WhatsApp */
+        .img-circleblock {
+            background-image: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation-name: none !important;
+            -webkit-animation-name: none !important;
+        }
+        
+        .img-circleblock i {
+            font-size: 40px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Botão WhatsApp Flutuante</h1>
+        <p>Teste o botão flutuante do WhatsApp no canto inferior direito da tela</p>
+        
+        <div class="info">
+            <h3>Funcionalidades:</h3>
+            <ul>
+                <li>Botão flutuante com animações</li>
+                <li>Link direto para WhatsApp</li>
+                <li>Responsivo em todos os dispositivos</li>
+                <li>Ícone animado com efeito pulsante</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div><a href="https://wa.me/553438132026" id="wa_button">
+        <div class="circlephone" style="transform-origin: center;"></div>
+        <div class="circle-fill" style="transform-origin: center;"></div>
+        <div class="img-circle" style="transform-origin: center;">
+            <div class="img-circleblock" style="transform-origin: center;"><i class="fab fa-whatsapp"></i></div>
+        </div>
+    </a></div>
+</body>
+</html>
