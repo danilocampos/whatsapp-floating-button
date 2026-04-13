@@ -1,0 +1,49 @@
+🚀 INÍCIO RÁPIDO - Botão WhatsApp Flutuante
+
+═══════════════════════════════════════════════════════════════════
+
+PASSO 1: Abra o Configurador
+➡️ https://danilocampos.github.io/whatsapp-floating-button/CONFIGURADOR.html
+
+PASSO 2: Configure seu número
+📞 Digite seu número (Ex: 5511987654321)
+💬 (Opcional) Digite sua mensagem padrão
+
+PASSO 3: Gere o código
+✨ Clique em "Gerar Código"
+
+PASSO 4: Copie e Cole
+📋 Copie o código gerado
+🖥️ Cole no seu site ANTES de </body>
+
+═══════════════════════════════════════════════════════════════════
+
+✅ PRONTO! O botão estará funcionando em seu site!
+
+═══════════════════════════════════════════════════════════════════
+
+💡 DICAS:
+
+1. O código usa jsDelivr para carregar CSS e JS do GitHub
+   (Não precisa hospedar em seu servidor)
+
+2. Número de WhatsApp deve estar em formato internacional:
+   
+   🇧🇷 Brasil:     55 + DDD + Número (Ex: 5511987654321)
+   🇵🇹 Portugal:   351 + Número (Ex: 351912345678)
+   🇺🇸 EUA:        1 + Número (Ex: 12025551234)
+
+3. A mensagem é OPCIONAL
+   (Se não colocar, abrirá o WhatsApp sem mensagem pré-preenchida)
+
+═══════════════════════════════════════════════════════════════════
+
+❓ DÚVIDAS?
+
+Veja o README.md para:
+- Personalizar cores
+- Mudar posição do botão
+- Aumentar/diminuir tamanho
+- Mais exemplos
+
+═══════════════════════════════════════════════════════════════════
