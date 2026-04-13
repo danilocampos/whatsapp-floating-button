@@ -136,13 +136,14 @@
         function generateCode() {
             const phoneNumber = document.getElementById('phoneNumber').value.trim();
             const message = document.getElementById('message').value.trim();
+            const closeScript = '</scr' + 'ipt>';
 
             if (!phoneNumber) {
                 alert('Por favor, insira seu número de WhatsApp.');
                 return;
             }
 
-            const embedCode = `<!-- Botão WhatsApp Flutuante -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : ''}</script>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>`;
+            const embedCode = `<!-- Botão WhatsApp Flutuante -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : ''}${closeScript}\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js">${closeScript}`;
 
             document.getElementById('embedCode').textContent = embedCode;
             document.getElementById('outputSection').classList.add('show');
@@ -153,6 +154,7 @@
 
         function updatePreview(phoneNumber, message) {
             const iframeDoc = document.getElementById('preview').contentDocument || document.getElementById('preview').contentWindow.document;
+            const closeScript = '</scr' + 'ipt>';
             const previewHTML = `<!DOCTYPE html>
 <html>
 <head>
@@ -175,8 +177,8 @@
     <script>
         window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};
         ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};` : ''}
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js"><\/script>
+    ${closeScript}
+    <script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js">${closeScript}
 </body>
 </html>`;
 
