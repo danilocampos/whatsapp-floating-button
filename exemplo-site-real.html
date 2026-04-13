@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo - Botão WhatsApp em Site Real</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 24px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .example-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .example-box h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        footer {
+            background: #f5f5f5;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📱 Botão WhatsApp Flutuante</h1>
+        <p>Integre facilmente em seu site</p>
+    </header>
+
+    <div class="container">
+        <!-- Seção 1: Método Rápido -->
+        <section>
+            <h2>1️⃣ Método Rápido (Recomendado)</h2>
+            <p>Copie e cole este código <span class="highlight">antes do fechamento da tag &lt;/body&gt;</span>:</p>
+            
+            <div class="code-block">
+&lt;!-- Font Awesome --&gt;<br>
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;<br>
+<br>
+&lt;!-- Estilos do Botão WhatsApp --&gt;<br>
+&lt;style&gt;<br>
+&nbsp;&nbsp;#wa_button { bottom: 25px; right: 0px; position: fixed; z-index: 999; }<br>
+&nbsp;&nbsp;.img-circle { background-color: #25D366; box-sizing: content-box; }<br>
+&nbsp;&nbsp;.circlephone { border: 2px solid #25D366; width: 150px; height: 150px; bottom: -25px; right: 10px; position: absolute; border-radius: 100%; opacity: .5; animation: circle-anim 2.4s infinite ease-in-out; }<br>
+&nbsp;&nbsp;/* ... mais estilos ... */<br>
+&lt;/style&gt;<br>
+<br>
+&lt;!-- Botão WhatsApp --&gt;<br>
+&lt;div&gt;<br>
+&nbsp;&nbsp;&lt;a href="https://wa.me/SEU_NUMERO_AQUI" id="wa_button" target="_blank"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="circlephone"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="circle-fill"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="img-circle"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="img-circleblock"&gt;&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/a&gt;<br>
+&lt;/div&gt;
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Importante!</h3>
+                <p>Substitua <span class="highlight">SEU_NUMERO_AQUI</span> pelo seu número de WhatsApp no formato internacional.</p>
+                <p><strong>Exemplos:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>🇧🇷 Brasil: <code>55 + 11 + 98765-4321</code> = <code>5511987654321</code></li>
+                    <li>🇵🇹 Portugal: <code>351 + 912345678</code> = <code>351912345678</code></li>
+                    <li>🇺🇸 EUA: <code>1 + 202-555-1234</code> = <code>12025551234</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção 2: Método com JavaScript -->
+        <section>
+            <h2>2️⃣ Método com Script Externo</h2>
+            <p>Se preferir usar um arquivo JavaScript separado:</p>
+
+            <h3>Passo 1: Adicione no seu HTML</h3>
+            <div class="code-block">
+&lt;script src="caminho/para/whatsapp-button.js"&gt;&lt;/script&gt;
+            </div>
+
+            <h3>Passo 2: Com Configuração Personalizada</h3>
+            <div class="code-block">
+&lt;script&gt;<br>
+&nbsp;&nbsp;window.whatsappConfig = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;phoneNumber: '5511987654321',&nbsp;&nbsp;&nbsp;&nbsp;// Seu número<br>
+&nbsp;&nbsp;&nbsp;&nbsp;position: 'right',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 'left' ou 'right'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;message: 'Olá! Como posso ajudar?'&nbsp;&nbsp;// Mensagem pré-preenchida<br>
+&nbsp;&nbsp;};<br>
+&lt;/script&gt;<br>
+&lt;script src="caminho/para/whatsapp-button.js"&gt;&lt;/script&gt;
+            </div>
+        </section>
+
+        <!-- Seção 3: Personalização -->
+        <section>
+            <h2>🎨 Personalização</h2>
+
+            <h3>Mudar Posição</h3>
+            <p>No CSS, altere <span class="highlight">right</span> para <span class="highlight">left</span>:</p>
+            <div class="code-block">
+#wa_button {<br>
+&nbsp;&nbsp;bottom: 25px;<br>
+&nbsp;&nbsp;left: 0px;&nbsp;&nbsp;&nbsp;&nbsp;/* Mude de 'right' para 'left' */<br>
+&nbsp;&nbsp;position: fixed;<br>
+&nbsp;&nbsp;z-index: 999;<br>
+}
+            </div>
+
+            <h3>Mudar Cor</h3>
+            <p>Procure por <span class="highlight">#25D366</span> (verde WhatsApp) no CSS:</p>
+            <div class="code-block">
+border: 2px solid #007AFF;&nbsp;&nbsp;/* Azul */<br>
+background-color: #007AFF;<br>
+/* Repita para todas as classes */<br>
+            </div>
+
+            <h3>Mudar Tamanho</h3>
+            <p>Ajuste os valores de <span class="highlight">width</span> e <span class="highlight">height</span>:</p>
+            <div class="code-block">
+.circle-fill {<br>
+&nbsp;&nbsp;width: 80px;&nbsp;&nbsp;&nbsp;&nbsp;/* Aumentado de 100px */<br>
+&nbsp;&nbsp;height: 80px;&nbsp;&nbsp;/* Aumentado de 100px */<br>
+&nbsp;&nbsp;/* ... resto do CSS ... */<br>
+}
+            </div>
+        </section>
+
+        <!-- Seção 4: Recursos -->
+        <section>
+            <h2>✨ Recursos</h2>
+            <ul class="feature-list">
+                <li>Botão flutuante com animações suaves</li>
+                <li>Ícone do WhatsApp (Font Awesome)</li>
+                <li>Efeitos de onda ao redor do botão</li>
+                <li>Responsivo em todos os dispositivos</li>
+                <li>Fácil de personalizar</li>
+                <li>Sem dependências externas (exceto Font Awesome)</li>
+                <li>Compatível com todos os navegadores modernos</li>
+            </ul>
+        </section>
+
+        <!-- Seção 5: Suporte -->
+        <section>
+            <h2>📞 Abrir Chat com Mensagem Pré-Preenchida</h2>
+            <p>Adicione uma mensagem padrão ao link:</p>
+            <div class="code-block">
+&lt;a href="https://wa.me/5511987654321?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre...&quot;&gt;
+            </div>
+            <p style="margin-top: 10px;">Use <span class="highlight">%20</span> para espaço e <span class="highlight">%0A</span> para quebra de linha.</p>
+        </section>
+
+        <!-- Seção 6: Contato -->
+        <section>
+            <h2>❓ Dúvidas?</h2>
+            <p>Consulte a documentação oficial:</p>
+            <ul>
+                <li><a href="https://www.whatsapp.com/business/developers/" target="_blank">WhatsApp Business API</a></li>
+                <li><a href="https://fontawesome.com/icons/whatsapp" target="_blank">Font Awesome - WhatsApp Icon</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Botão WhatsApp Flutuante - Fácil de Integrar</p>
+    </footer>
+
+    <!-- EXEMPLO: Botão WhatsApp em Ação -->
+    <!-- Descomente abaixo para ativar o botão nesta página -->
+    <!--
+    <script>
+        window.whatsappConfig = {
+            phoneNumber: '553438132026',
+            position: 'right',
+            message: 'Olá! Gostaria de saber mais sobre seus serviços.'
+        };
+    </script>
+    <script src="whatsapp-button.js"></script>
+    -->
+</body>
+</html>
