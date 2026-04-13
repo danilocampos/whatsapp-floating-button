@@ -133,6 +133,8 @@
     </div>
 
     <script>
+        const ASSET_BASE = 'https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@24d1b2b';
+
         function generateCode() {
             const phoneNumber = document.getElementById('phoneNumber').value.trim();
             const message = document.getElementById('message').value.trim();
@@ -143,7 +145,7 @@
                 return;
             }
 
-            const embedCode = `<!-- Botão WhatsApp Flutuante -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : ''}${closeScript}\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">\n<script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js">${closeScript}`;
+            const embedCode = `<!-- Botão WhatsApp Flutuante -->\n<script>\n  window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};\n  ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};\n` : ''}${closeScript}\n<link rel="stylesheet" href="${ASSET_BASE}/whatsapp-button.css">\n<script src="${ASSET_BASE}/whatsapp-button.js">${closeScript}`;
 
             document.getElementById('embedCode').textContent = embedCode;
             document.getElementById('outputSection').classList.add('show');
@@ -161,7 +163,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.css">
+    <link rel="stylesheet" href="${ASSET_BASE}/whatsapp-button.css">
     <style>
         body { margin: 0; padding: 20px; background: #f4f8ff; font-family: Inter, Arial, sans-serif; }
         .content { background: white; padding: 24px; border-radius: 16px; border: 1px solid #e5eaf2; text-align: center; }
@@ -178,7 +180,7 @@
         window.WHATSAPP_NUMBER = ${JSON.stringify(phoneNumber)};
         ${message ? `window.WHATSAPP_MESSAGE = ${JSON.stringify(message)};` : ''}
     ${closeScript}
-    <script src="https://cdn.jsdelivr.net/gh/danilocampos/whatsapp-floating-button@main/whatsapp-button.js">${closeScript}
+    <script src="${ASSET_BASE}/whatsapp-button.js">${closeScript}
 </body>
 </html>`;
 
