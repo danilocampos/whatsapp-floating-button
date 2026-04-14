@@ -90,11 +90,6 @@
     justify-content: center;
 }
 
-.img-circleblock i {
-    font-size: 40px;
-    color: white;
-}
-
 .img-circle:hover {
     opacity: 1;
 }
