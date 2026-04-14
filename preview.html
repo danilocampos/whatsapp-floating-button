@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview — Botão WhatsApp Flutuante</title>
+    <link rel="stylesheet" href="./whatsapp-button.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #111827;
+            color: #f9fafb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        h1 { font-size: 1.4rem; font-weight: 600; opacity: .85; }
+        p  { font-size: .9rem; opacity: .5; }
+    </style>
+</head>
+<body>
+    <h1>Preview — Botão WhatsApp Flutuante</h1>
+    <p>O botão deve aparecer no canto inferior direito ↘</p>
+
+    <script>
+        window.WHATSAPP_NUMBER  = '553438132026';
+        window.WHATSAPP_MESSAGE = 'Olá! Vim pelo site e gostaria de mais informações.';
+    </script>
+    <script src="./whatsapp-button.js"></script>
+</body>
+</html>
