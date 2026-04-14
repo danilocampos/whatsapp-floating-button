@@ -6,7 +6,7 @@ Um botão WhatsApp flutuante responsivo e animado, pronto para integrar em qualq
 
 ### Opção 1: Usar o Configurador (Recomendado) 🎨
 
-1. Abra [este link](https://danilocampos.github.io/whatsapp-floating-button/CONFIGURADOR.html)
+1. Abra a [Página da Aplicação](https://danilocampos.github.io/whatsapp-floating-button/)
 2. Digite seu número de WhatsApp
 3. (Opcional) Digite uma mensagem padrão
 4. Clique em "Gerar Código"
@@ -31,8 +31,7 @@ Um botão WhatsApp flutuante responsivo e animado, pronto para integrar em qualq
 
 ```
 whatsapp-floating-button/
-├── index.html                  # Página de teste
-├── CONFIGURADOR.html           # 🎨 Ferramenta visual para gerar código
+├── index.html                  # 🎨 Aplicação principal / Ferramenta visual para gerar código
 ├── whatsapp-button.css         # Estilos do botão
 ├── whatsapp-button.js          # Script principal
 ├── style.css                   # Estilos adicionais (obsoleto)
